@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gom Xu ào Vàng</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root {
+      --gradient: linear-gradient(135deg, #0f3443, #34e89e);
+      --gold: #ffd700;
+      --dark: rgba(0,0,0,0.4);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--gradient);
+      color: white;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: var(--dark);
+      padding: 12px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+    .profile {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--dark);
+    }
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .user img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+    }
+    .stats {
+      display: flex;
+      gap: 16px;
+      font-size: 0.95rem;
+    }
+    .container {
+      flex: 1;
+      padding: 16px;
+    }
+    .section {
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .title {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    button {
+      background: linear-gradient(45deg, #ffd700, #ffaa00);
+      color: black;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 50px;
+      margin: 8px auto;
+      display: block;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    button:active { transform: scale(0.96); }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+    }
+    .tabs {
+      display: flex;
+      background: var(--dark);
+      position: sticky;
+      bottom: 0;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    .tab {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .tab.active {
+      background: rgba(255,215,0,0.3);
+    }
+    .hidden { display: none; }
+    .task-item {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 12px;
+      margin: 8px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .task-btn {
+      background: #4CAF50;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>Gom Xu ào Vàng</header>
+
+<div class="profile">
+  <div class="user">
+    <img id="avatar" src="" alt="avatar">
+    <span id="username">Obito</span>
+  </div>
+  <div class="stats">
+    <span> <span id="diamonds">0</span></span>
+    <span> <span id="gold">0</span></span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Tab Khai Thác -->
+  <div id="tab-khaitac" class="section">
+    <div style="text-align:center;">
+      <div style="font-size:120px;"></div>
+      <div style="font-size:3rem; color:var(--gold); font-weight:bold;" id="currentGold">0</div>
+      <div style="margin:10px 0;">Tc  ào: <span id="speed">8.00</span> vàng/giây</div>
+      <button id="btn-khai-thac">Bt u khai thác</button>
+      <button id="btn-nang-cap">Nâng cp (5,000 )</button>
+    </div>
+  </div>
+
+  <!-- Tab Rút Tin -->
+  <div id="tab-ruttien" class="section hidden">
+    <div class="title">Rút Tin</div>
+    <p style="text-align:center;">T l: 1 vàng = 0.0005 VND</p>
+    <select id="rut-type">
+      <option value="momo">MoMo</option>
+      <option value="zalopay">ZaloPay</option>
+      <option value="nganhang">Ngân Hàng</option>
+    </select>
+    <input id="rut-sotaikhoan" placeholder="S tài khon / ST ví">
+    <input id="rut-ten" placeholder="Tên ch tài khon">
+    <input id="rut-vang" type="number" placeholder="S vàng rút (min 8000)" min="8000">
+    <p>Tng nhn: <span id="rut-tongnhan">0</span> VND</p>
+    <button onclick="guiRutTien()">Rút V Ví / Ngân Hàng</button>
+
+    <div style="margin-top:20px;">
+      <h4>Lch S Rút Tin</h4>
+      <div id="lichsu-rut">Cha có lch s rút tin nào.</div>
+    </div>
+  </div>
+
+  <!-- Tab Quy i -->
+  <div id="tab-quydoi" class="section hidden">
+    <div class="title">Quy i Vàng sang Kim Cng</div>
+    <p>T l: 125 vàng = 1 kim cng</p>
+    <input id="quydoi-vang" type="number" placeholder="S vàng mun i">
+    <p>Nhn c: <span id="quydoi-kimcuong">0</span> kim cng</p>
+    <button onclick="xacNhanQuyDoi()">Xác Nhn Quy i</button>
+  </div>
+
+  <!-- Tab Nhim V -->
+  <div id="tab-nhiemvu" class="section hidden">
+    <div class="title">Nhim V Thêm</div>
+    <div class="task-item">
+      <span>Tham gia nhim v  kim vàng (nhn ti a 10,000,000 vàng)</span>
+      <button class="task-btn">Tham gia</button>
+    </div>
+    <div class="task-item">
+      <span>Tham gia kênh Telegram</span>
+      <button class="task-btn" onclick="thamGiaTelegram()">Tham gia</button>
+    </div>
+    <div class="task-item">
+      <span>Xem qung cáo (c sau 15 phút nhn 20,000 vàng hoc 50 kim cng)</span>
+      <button class="task-btn">Xem Qung Cáo</button>
+    </div>
+  </div>
+
+  <!-- Tab Mi Bn Bè -->
+  <div id="tab-moiban" class="section hidden">
+    <div class="title">Mi Bn Bè</div>
+    <p>Gii thiu thành công nhn ngay 300,000 vàng + 1,000 kim cng</p>
+    <p>Mi ngi bn mi thành công +100,000 vàng (tng 3 cp th ào)</p>
+    <input type="text" value="https://t.me/GomXu_DaoVangBot?start=yourid" readonly style="text-align:center;">
+    <button onclick="copyLink()">Copy Link Mi</button>
+
+    <div style="margin-top:20px;">
+      <h4>Tng Quan</h4>
+      <p>ã mi: 0</p>
+      <p>Vàng nhn: 1</p>
+      <p>Kim cng nhn: 2</p>
+    </div>
+  </div>
+
+  <!-- Tab Nhp Giftcode -->
+  <div id="tab-giftcode" class="section">
+    <div class="title">Nhp Giftcode</div>
+    <input id="giftCodeInput" type="text" placeholder="NHP MÃ GIFTCODE...">
+    <button onclick="nhapGiftCode()">Nhn</button>
+    <p id="giftResult" style="margin-top:12px; color:#ffeb3b;"></p>
+  </div>
+
+</div>
+
+<!-- Tabs di cùng -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('khaitac')">Khai Thác</div>
+  <div class="tab" onclick="showTab('ruttien')">Rút Tin</div>
+  <div class="tab" onclick="showTab('quydoi')">Quy i</div>
+  <div class="tab" onclick="showTab('nhiemvu')">Nhim V</div>
+  <div class="tab" onclick="showTab('moiban')">Mi Bn</div>
+</div>
+
+<script>
+const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand();
+
+let gold = 0;
+let diamonds = 0;
+let speed = 8.00;
+
+document.getElementById("username").textContent = tg.initDataUnsafe.user?.first_name || "Obito";
+if (tg.initDataUnsafe.user?.photo_url) {
+  document.getElementById("avatar").src = tg.initDataUnsafe.user.photo_url;
+}
+
+tg.showAlert(" CNH BÁO: To nhiu tài khon s không c duyt rút tin và s hy ngay lp tc! Lu ý không t phá code hay t ý sa bt c th gì.");
+
+function updateUI() {
+  document.getElementById("gold").textContent = gold.toLocaleString();
+  document.getElementById("currentGold").textContent = gold.toLocaleString();
+  document.getElementById("diamonds").textContent = diamonds;
+  document.getElementById("speed").textContent = speed.toFixed(2);
+}
+updateUI();
+
+// Chuyn tab
+function showTab(tab) {
+  document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+  if (tab === 'khaitac') document.getElementById('tab-khaitac').classList.remove('hidden');
+  if (tab === 'ruttien') document.getElementById('tab-ruttien').classList.remove('hidden');
+  if (tab === 'quydoi') document.getElementById('tab-quydoi').classList.remove('hidden');
+  if (tab === 'nhiemvu') document.getElementById('tab-nhiemvu').classList.remove('hidden');
+  if (tab === 'moiban') document.getElementById('tab-moiban').classList.remove('hidden');
+
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// Rút tin
+function guiRutTien() {
+  const type = document.getElementById("rut-type").value;
+  const accNum = document.getElementById("rut-sotaikhoan").value.trim();
+  const accName = document.getElementById("rut-ten").value.trim();
+  const amount = parseInt(document.getElementById("rut-vang").value) || 0;
+
+  if (!accNum || !accName || amount < 8000) {
+    alert("in y  và s vàng ti thiu 8000!");
+    return;
+  }
+  if (amount > gold) {
+    alert("Không  vàng!");
+    return;
+  }
+
+  tg.sendData(JSON.stringify({
+    action: "withdraw_request",
+    user_id: tg.initDataUnsafe.user.id,
+    username: tg.initDataUnsafe.user.username || "unknown",
+    type: type,
+    account_number: accNum,
+    account_name: accName,
+    amount: amount
+  }));
+
+  gold -= amount;
+  updateUI();
+  alert("Yêu cu rút ã gi n Admin!");
+}
+
+// Nhp giftcode trên web
+function nhapGiftCode() {
+  const code = document.getElementById("giftCodeInput").value.trim();
+  if (!code) {
+    document.getElementById("giftResult").innerHTML = "<span style='color:#ff4444;'>Vui lòng nhp mã!</span>";
+    return;
+  }
+
+  tg.sendData(JSON.stringify({
+    action: "redeem_gift",
+    code: code
+  }));
+
+  document.getElementById("giftResult").innerHTML = "<span style='color:#ffeb3b;'>ang x lý...</span>";
+}
+
+// Gi lp khai thác & nâng cp
+document.getElementById("btn-khai-thac").onclick = () => {
+  gold += 10000;
+  updateUI();
+  alert("Khai thác thành công! +10,000 vàng");
+};
+
+document.getElementById("btn-nang-cap").onclick = () => {
+  if (diamonds >= 5000) {
+    diamonds -= 5000;
+    speed += 2.0;
+    alert("Nâng cp thành công! Tc  mi: " + speed.toFixed(2));
+    updateUI();
+  } else {
+    alert("Không  kim cng!");
+  }
+};
+
+// Gi lp quy i
+document.getElementById("quydoi-vang").oninput = function() {
+  let v = parseInt(this.value) || 0;
+  document.getElementById("quydoi-kimcuong").innerText = Math.floor(v / 125);
+};
+</script>
+</body>
+</html>
