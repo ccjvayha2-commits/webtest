@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gom Xu ‡o V‡ng</title>
+  <title>Gom Xu √†o V√†ng</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
@@ -126,7 +126,7 @@
 </head>
 <body>
 
-<header>Gom Xu ‡o V‡ng</header>
+<header>Gom Xu √†o V√†ng</header>
 
 <div class="profile">
   <div class="user">
@@ -141,76 +141,76 @@
 
 <div class="container">
 
-  <!-- Tab Khai Th·c -->
+  <!-- Tab Khai Th√°c -->
   <div id="tab-khaitac" class="section">
     <div style="text-align:center;">
       <div style="font-size:120px;"></div>
       <div style="font-size:3rem; color:var(--gold); font-weight:bold;" id="currentGold">0</div>
-      <div style="margin:10px 0;">Tc  ‡o: <span id="speed">8.00</span> v‡ng/gi‚y</div>
-      <button id="btn-khai-thac">Bt u khai th·c</button>
-      <button id="btn-nang-cap">N‚ng cp (5,000 )</button>
+      <div style="margin:10px 0;">Tc  √†o: <span id="speed">8.00</span> v√†ng/gi√¢y</div>
+      <button id="btn-khai-thac">Bt u khai th√°c</button>
+      <button id="btn-nang-cap">N√¢ng cp (5,000 )</button>
     </div>
   </div>
 
-  <!-- Tab R˙t Tin -->
+  <!-- Tab R√∫t Tin -->
   <div id="tab-ruttien" class="section hidden">
-    <div class="title">R˙t Tin</div>
-    <p style="text-align:center;">T l: 1 v‡ng = 0.0005 VND</p>
+    <div class="title">R√∫t Tin</div>
+    <p style="text-align:center;">T l: 1 v√†ng = 0.0005 VND</p>
     <select id="rut-type">
       <option value="momo">MoMo</option>
       <option value="zalopay">ZaloPay</option>
-      <option value="nganhang">Ng‚n H‡ng</option>
+      <option value="nganhang">Ng√¢n H√†ng</option>
     </select>
-    <input id="rut-sotaikhoan" placeholder="S t‡i khon / ST vÌ">
-    <input id="rut-ten" placeholder="TÍn ch t‡i khon">
-    <input id="rut-vang" type="number" placeholder="S v‡ng r˙t (min 8000)" min="8000">
+    <input id="rut-sotaikhoan" placeholder="S t√†i khon / ST v√≠">
+    <input id="rut-ten" placeholder="T√™n ch t√†i khon">
+    <input id="rut-vang" type="number" placeholder="S v√†ng r√∫t (min 8000)" min="8000">
     <p>Tng nhn: <span id="rut-tongnhan">0</span> VND</p>
-    <button onclick="guiRutTien()">R˙t V VÌ / Ng‚n H‡ng</button>
+    <button onclick="guiRutTien()">R√∫t V V√≠ / Ng√¢n H√†ng</button>
 
     <div style="margin-top:20px;">
-      <h4>Lch S R˙t Tin</h4>
-      <div id="lichsu-rut">Cha cÛ lch s r˙t tin n‡o.</div>
+      <h4>Lch S R√∫t Tin</h4>
+      <div id="lichsu-rut">Cha c√≥ lch s r√∫t tin n√†o.</div>
     </div>
   </div>
 
   <!-- Tab Quy i -->
   <div id="tab-quydoi" class="section hidden">
-    <div class="title">Quy i V‡ng sang Kim Cng</div>
-    <p>T l: 125 v‡ng = 1 kim cng</p>
-    <input id="quydoi-vang" type="number" placeholder="S v‡ng mun i">
+    <div class="title">Quy i V√†ng sang Kim Cng</div>
+    <p>T l: 125 v√†ng = 1 kim cng</p>
+    <input id="quydoi-vang" type="number" placeholder="S v√†ng mun i">
     <p>Nhn c: <span id="quydoi-kimcuong">0</span> kim cng</p>
-    <button onclick="xacNhanQuyDoi()">X·c Nhn Quy i</button>
+    <button onclick="xacNhanQuyDoi()">X√°c Nhn Quy i</button>
   </div>
 
   <!-- Tab Nhim V -->
   <div id="tab-nhiemvu" class="section hidden">
-    <div class="title">Nhim V ThÍm</div>
+    <div class="title">Nhim V Th√™m</div>
     <div class="task-item">
-      <span>Tham gia nhim v  kim v‡ng (nhn ti a 10,000,000 v‡ng)</span>
+      <span>Tham gia nhim v  kim v√†ng (nhn ti a 10,000,000 v√†ng)</span>
       <button class="task-btn">Tham gia</button>
     </div>
     <div class="task-item">
-      <span>Tham gia kÍnh Telegram</span>
+      <span>Tham gia k√™nh Telegram</span>
       <button class="task-btn" onclick="thamGiaTelegram()">Tham gia</button>
     </div>
     <div class="task-item">
-      <span>Xem qung c·o (c sau 15 ph˙t nhn 20,000 v‡ng hoc 50 kim cng)</span>
-      <button class="task-btn">Xem Qung C·o</button>
+      <span>Xem qung c√°o (c sau 15 ph√∫t nhn 20,000 v√†ng hoc 50 kim cng)</span>
+      <button class="task-btn">Xem Qung C√°o</button>
     </div>
   </div>
 
-  <!-- Tab Mi Bn BË -->
+  <!-- Tab Mi Bn B√® -->
   <div id="tab-moiban" class="section hidden">
-    <div class="title">Mi Bn BË</div>
-    <p>Gii thiu th‡nh cÙng nhn ngay 300,000 v‡ng + 1,000 kim cng</p>
-    <p>Mi ngi bn mi th‡nh cÙng +100,000 v‡ng (tng 3 cp th ‡o)</p>
+    <div class="title">Mi Bn B√®</div>
+    <p>Gii thiu th√†nh c√¥ng nhn ngay 300,000 v√†ng + 1,000 kim cng</p>
+    <p>Mi ngi bn mi th√†nh c√¥ng +100,000 v√†ng (tng 3 cp th √†o)</p>
     <input type="text" value="https://t.me/GomXu_DaoVangBot?start=yourid" readonly style="text-align:center;">
     <button onclick="copyLink()">Copy Link Mi</button>
 
     <div style="margin-top:20px;">
       <h4>Tng Quan</h4>
-      <p>„ mi: 0</p>
-      <p>V‡ng nhn: 1</p>
+      <p>√£ mi: 0</p>
+      <p>V√†ng nhn: 1</p>
       <p>Kim cng nhn: 2</p>
     </div>
   </div>
@@ -218,17 +218,17 @@
   <!-- Tab Nhp Giftcode -->
   <div id="tab-giftcode" class="section">
     <div class="title">Nhp Giftcode</div>
-    <input id="giftCodeInput" type="text" placeholder="NHP M√ GIFTCODE...">
+    <input id="giftCodeInput" type="text" placeholder="NHP M√É GIFTCODE...">
     <button onclick="nhapGiftCode()">Nhn</button>
     <p id="giftResult" style="margin-top:12px; color:#ffeb3b;"></p>
   </div>
 
 </div>
 
-<!-- Tabs di c˘ng -->
+<!-- Tabs di c√πng -->
 <div class="tabs">
-  <div class="tab active" onclick="showTab('khaitac')">Khai Th·c</div>
-  <div class="tab" onclick="showTab('ruttien')">R˙t Tin</div>
+  <div class="tab active" onclick="showTab('khaitac')">Khai Th√°c</div>
+  <div class="tab" onclick="showTab('ruttien')">R√∫t Tin</div>
   <div class="tab" onclick="showTab('quydoi')">Quy i</div>
   <div class="tab" onclick="showTab('nhiemvu')">Nhim V</div>
   <div class="tab" onclick="showTab('moiban')">Mi Bn</div>
@@ -248,7 +248,7 @@ if (tg.initDataUnsafe.user?.photo_url) {
   document.getElementById("avatar").src = tg.initDataUnsafe.user.photo_url;
 }
 
-tg.showAlert(" CNH B¡O: To nhiu t‡i khon s khÙng c duyt r˙t tin v‡ s hy ngay lp tc! Lu ˝ khÙng t ph· code hay t ˝ sa bt c th gÏ.");
+tg.showAlert(" CNH B√ÅO: To nhiu t√†i khon s kh√¥ng c duyt r√∫t tin v√† s hy ngay lp tc! Lu √Ω kh√¥ng t ph√° code hay t √Ω sa bt c th g√¨.");
 
 function updateUI() {
   document.getElementById("gold").textContent = gold.toLocaleString();
@@ -271,7 +271,7 @@ function showTab(tab) {
   event.target.classList.add('active');
 }
 
-// R˙t tin
+// R√∫t tin
 function guiRutTien() {
   const type = document.getElementById("rut-type").value;
   const accNum = document.getElementById("rut-sotaikhoan").value.trim();
@@ -279,11 +279,11 @@ function guiRutTien() {
   const amount = parseInt(document.getElementById("rut-vang").value) || 0;
 
   if (!accNum || !accName || amount < 8000) {
-    alert("in y  v‡ s v‡ng ti thiu 8000!");
+    alert("in y  v√† s v√†ng ti thiu 8000!");
     return;
   }
   if (amount > gold) {
-    alert("KhÙng  v‡ng!");
+    alert("Kh√¥ng  v√†ng!");
     return;
   }
 
@@ -299,14 +299,14 @@ function guiRutTien() {
 
   gold -= amount;
   updateUI();
-  alert("YÍu cu r˙t „ gi n Admin!");
+  alert("Y√™u cu r√∫t √£ gi n Admin!");
 }
 
-// Nhp giftcode trÍn web
+// Nhp giftcode tr√™n web
 function nhapGiftCode() {
   const code = document.getElementById("giftCodeInput").value.trim();
   if (!code) {
-    document.getElementById("giftResult").innerHTML = "<span style='color:#ff4444;'>Vui lÚng nhp m„!</span>";
+    document.getElementById("giftResult").innerHTML = "<span style='color:#ff4444;'>Vui l√≤ng nhp m√£!</span>";
     return;
   }
 
@@ -315,24 +315,24 @@ function nhapGiftCode() {
     code: code
   }));
 
-  document.getElementById("giftResult").innerHTML = "<span style='color:#ffeb3b;'>ang x l˝...</span>";
+  document.getElementById("giftResult").innerHTML = "<span style='color:#ffeb3b;'>ang x l√Ω...</span>";
 }
 
-// Gi lp khai th·c & n‚ng cp
+// Gi lp khai th√°c & n√¢ng cp
 document.getElementById("btn-khai-thac").onclick = () => {
   gold += 10000;
   updateUI();
-  alert("Khai th·c th‡nh cÙng! +10,000 v‡ng");
+  alert("Khai th√°c th√†nh c√¥ng! +10,000 v√†ng");
 };
 
 document.getElementById("btn-nang-cap").onclick = () => {
   if (diamonds >= 5000) {
     diamonds -= 5000;
     speed += 2.0;
-    alert("N‚ng cp th‡nh cÙng! Tc  mi: " + speed.toFixed(2));
+    alert("N√¢ng cp th√†nh c√¥ng! Tc  mi: " + speed.toFixed(2));
     updateUI();
   } else {
-    alert("KhÙng  kim cng!");
+    alert("Kh√¥ng  kim cng!");
   }
 };
 
